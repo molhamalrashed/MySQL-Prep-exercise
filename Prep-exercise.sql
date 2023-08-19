@@ -36,6 +36,7 @@ CREATE TABLE steps (
 --  The relation between entities 
 -- 1. One Ingredient can be used in many recipes and one recipe can use many ingredients so it is many to many relation
 -- 2. one recipe cna belong to more than one category and one category can contain many recipes so it is a many to many relation
+-- 3. one recipe can have many steps and one step can be used in many recipes so it is a  many to many relation 
 
 
 -- 1. Create ingredient-recipes table
@@ -52,4 +53,12 @@ CREATE TABLE categories_recipes (
     category_recipe_id INT PRIMARY KEY,
     category_id INT REFERENCES categories (category_id),
     recipe_id INT REFERENCES recipes (recipe_id)
+);
+
+-- 3. Create recipes_steps table
+
+CREATE TABLE recipes_steps (
+    recipe_step_id INT PRIMARY KEY,
+    recipe_id INT REFERENCES recipes (recipe_id),
+    step_id INT REFERENCES steps (step_id)
 );
