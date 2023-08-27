@@ -204,8 +204,9 @@ VALUES
 -- My queries
 
 -- All the vegetarian recipes with potatoes
-    SELECT ri.recipe_id
+    SELECT r.recipe_id, r.recipe_name;
     FROM recipe_ingredient ri
+    JOIN recipe r ON ri.recipe_id = r.recipe_id
     WHERE ri.recipe_id IN (
         SELECT rc.recipe_id
         FROM recipe_category rc
@@ -213,8 +214,9 @@ VALUES
     AND ri.ingredient_id = 19;
 
 --All the cakes that do not need baking
-    SELECT DISTINCT rs.recipe_id
+    SELECT DISTINCT r.recipe_id, r.recipe_name
     FROM recipe_step rs
+    JOIN recipe r ON rs.recipe_id = r.recipe_id
     WHERE rs.recipe_id IN (
         SELECT rc.recipe_id
         FROM recipe_category rc
@@ -222,5 +224,7 @@ VALUES
     ) And rs.step_id != 10;
 
 -- All the vegan and Japanese recipes
-    SELECT DISTINCT recipe_id FROM recipe_category
-    WHERE category_id = 4 OR category_id = 6;
+    SELECT DISTINCT rc.recipe_id, r.recipe_name
+    FROM recipe_category rc
+    JOIN recipe r ON rc.recipe_id = r.recipe_id
+    WHERE rc.category_id = 4 OR rc.category_id = 6;
