@@ -228,3 +228,21 @@ VALUES
     FROM recipe_category rc
     JOIN recipe r ON rc.recipe_id = r.recipe_id
     WHERE rc.category_id = 4 OR rc.category_id = 6;
+
+/* Week 3 Exercise
+    Was your database already in 2NF / 3 NF?
+
+    First 2NF: 
+    To check if the database is in 2NF, it shouldn't contain any partial dependency which means the non-prime attribute shouldn't depend partially on the primary key and for all the tables in food database there is no partial dependency and for that it is already 2NF
+
+    Second 3NF: 
+    To check if hte database is in 3NF, it shouldn't contain any transitive dependency which means a non-prime attribute shouldn't depend indirectly on another non-prime attribute and in all  the tables of food database we can see that all non-prim attributes depend directly on the prime key and there is no transitive dependency of any type.
+
+    Third: in case of adding thousands of recipes we will face a few challenges
+    1. the time it's needed for each query will be more and the database will be slower
+    2. updating the database (not adding new recipes) but changing the structure of the database will be very complicated due to the fixed structure nature of SQL databases and this can be fixed by using NOSQL databases 
+    3. Backup and recovery will be more complex, bigger the data more difficult to backup 
+    
+
+
+   
